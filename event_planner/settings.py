@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io', 'event_planner.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['8000-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io', 'event-planner01-349f46b9deb8.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
