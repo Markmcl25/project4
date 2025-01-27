@@ -32,6 +32,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['8000-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io', 'event-planner01-349f46b9deb8.herokuapp.com', 'localhost', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://event-planner01-349f46b9deb8.herokuapp.com'
+]
 
 # Application definition
 
