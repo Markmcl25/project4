@@ -28,9 +28,18 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['8000-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io', 'event-planner01-349f46b9deb8.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    '.gitpod.io',
+    '8080-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io',
+    'markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io',
+    'event-planner01-349f46b9deb8.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+]
+
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 CSRF_TRUSTED_ORIGINS = [
     'https://event-planner01-349f46b9deb8.herokuapp.com'
@@ -80,6 +89,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'event_planner.wsgi.application'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
