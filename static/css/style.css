@@ -1,0 +1,18 @@
+/* Ensure the body takes the full height of the viewport and centers the layout */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; /* Remove default margins */
+}
+
+/* Pushes the footer to the bottom */
+main {
+    flex: 1;
+}
+
+/* Ensures the header and footer span the full width */
+header,
+footer {
+    width: 100%;
+}
