@@ -1,20 +1,47 @@
-{% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<section class="container my-4">
-    <h2>Upcoming Events</h2>
-    <ul class="list-group">
+<section>
+    <h2 class="text-center">Upcoming Events</h2>
+
+    <!-- Filter Form -->
+    <form method="GET" action="{% url 'home' %}" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="date" name="date" class="form-control" placeholder="Select Date">
+            </div>
+            <div class="col-md-4">
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-secondary w-100">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Event Listing -->
+    <div class="row">
         {% for event in upcoming_events %}
-            <li class="list-group-item">
-                <h5>{{ event.name }}</h5>
-                <p>{{ event.description }}</p>
-                <small>{{ event.date|date:"M d, Y H:i" }}</small>
-            </li>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p class="card-text">
+                        <strong>Date:</strong> {{ event.date }} <br>
+                        <strong>Location:</strong> {{ event.location }}
+                    </p>
+                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <p>No upcoming events at the moment.</p>
+        <p class="text-center">No upcoming events.</p>
         {% endfor %}
-    </ul>
+    </div>
 </section>
 {% endblock %}
