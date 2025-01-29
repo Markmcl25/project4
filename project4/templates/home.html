@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="container my-4">
+    <h2>Upcoming Events</h2>
+    <ul class="list-group">
+        {% for event in upcoming_events %}
+            <li class="list-group-item">
+                <h5>{{ event.name }}</h5>
+                <p>{{ event.description }}</p>
+                <small>{{ event.date|date:"M d, Y H:i" }}</small>
+            </li>
+        {% empty %}
+            <p>No upcoming events at the moment.</p>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
