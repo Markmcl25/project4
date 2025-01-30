@@ -1,37 +1,42 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event
 from django.utils.timezone import now
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
+# HOME PAGE - Display upcoming events
 def home(request):
-    """ Display upcoming events (next 5 by default) """
-    upcoming_events = Event.objects.filter(date__gte=now()).order_by('date')[:5]  
+    upcoming_events = Event.objects.filter(date__gte=now()).order_by('date')[:5]  # Show next 5 events
     return render(request, 'home.html', {'upcoming_events': upcoming_events})
 
-@login_required
-def create_event(request):
-    """ Placeholder for event creation (TODO: Add event form logic) """
-    return render(request, 'create_event.html')
-
-def event_list(request):
-    """ Display all events """
-    events = Event.objects.all()
-    return render(request, 'event_list.html', {'events': events})   
-
-@login_required
-def dashboard(request):
-    """ Ensure only logged-in users can access dashboard """
-    return render(request, 'dashboard.html')    
-
+# SIGNUP - Create a new account
 def signup(request):
-    """ User signup using Django's built-in UserCreationForm """
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")  # Redirect to login after successful signup
+            return redirect("login")  # Redirect to login after signup
     else:
         form = UserCreationForm()
     
-    return render(request, "registration/signup.html", {"form": form})    
+    return render(request, "registration/signup.html", {"form": form})
+
+# CREATE EVENT - Protected, Only Logged-in Users
+@login_required
+def create_event(request):
+    return render(request, 'create_event.html')
+
+# EVENT LIST - Show all events
+def event_list(request):
+    events = Event.objects.all()
+    return render(request, 'event_list.html', {'events': events})   
+
+# EVENT DETAIL - Show a single event
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    return render(request, 'event_detail.html', {'event': event})
+
+# DASHBOARD - Protected, Only Logged-in Users
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
