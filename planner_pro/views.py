@@ -12,19 +12,32 @@ def home(request):
 @login_required
 def profile(request):
     return render(request, "profile.html", {"user": request.user})
-    
+
 # SIGNUP - Create a new account
 def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("login")  # Redirect to login after signup
+            user = form.save()
+            login(request, user)  # Log the user in after signup
+            return redirect("dashboard")  # Redirect to dashboard
     else:
         form = UserCreationForm()
     
     return render(request, "registration/signup.html", {"form": form})
 
+def user_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("dashboard")  # Redirect after login
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, "registration/login.html", {"form": form})
+    
 # CREATE EVENT - Protected, Only Logged-in Users
 @login_required
 def create_event(request):
