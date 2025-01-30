@@ -7,13 +7,15 @@
     <form method="GET" action="{% url 'home' %}" class="mb-4">
         <div class="row">
             <div class="col-md-4">
-                <input type="date" name="date" class="form-control" placeholder="Select Date">
+                <input type="date" name="date" class="form-control" value="{{ request.GET.date }}">
             </div>
             <div class="col-md-4">
                 <select name="category" class="form-control">
                     <option value="">All Categories</option>
                     {% for category in categories %}
-                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
                     {% endfor %}
                 </select>
             </div>
@@ -23,16 +25,23 @@
         </div>
     </form>
 
+    <!-- Create Event Button (Only for Admins & Event Planners) -->
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="text-center my-3">
+        <a href="{% url 'create_event' %}" class="btn btn-success">+ Create New Event</a>
+    </div>
+    {% endif %}
+
     <!-- Event Listing -->
     <div class="row">
         {% for event in upcoming_events %}
         <div class="col-md-4 mb-3">
             <div class="card">
-                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                <img src="{{ event.image.url|default:'/static/images/default-event.jpg' }}" class="card-img-top" alt="{{ event.title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ event.title }}</h5>
                     <p class="card-text">
-                        <strong>Date:</strong> {{ event.date }} <br>
+                        <strong>Date:</strong> {{ event.date|date:"F j, Y" }} <br>
                         <strong>Location:</strong> {{ event.location }}
                     </p>
                     <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
@@ -40,7 +49,9 @@
             </div>
         </div>
         {% empty %}
-        <p class="text-center">No upcoming events.</p>
+        <div class="col-12 text-center">
+            <p>No upcoming events.</p>
+        </div>
         {% endfor %}
     </div>
 </section>
