@@ -10,9 +10,9 @@
     </div>
 </section>
 
-
-<section>
-    <h2 class="text-center">Upcoming Events</h2>
+<!-- Upcoming Events Section -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Upcoming Events</h2>
 
     <!-- Filter Form -->
     <form method="GET" action="{% url 'home' %}" class="mb-4">
@@ -45,25 +45,39 @@
 
     <!-- Event Listing -->
     <div class="row">
-        {% for event in upcoming_events %}
-        <div class="col-md-4 mb-3">
-            <div class="card">
-                <img src="{{ event.image.url|default:'/static/images/default-event.jpg' }}" class="card-img-top" alt="{{ event.title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.title }}</h5>
-                    <p class="card-text">
-                        <strong>Date:</strong> {{ event.date|date:"F j, Y" }} <br>
-                        <strong>Location:</strong> {{ event.location }}
-                    </p>
-                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
+        {% if upcoming_events %}
+            {% for event in upcoming_events %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">
+                            <strong>Date:</strong> {{ event.date }} <br>
+                            <strong>Location:</strong> {{ event.location }}
+                        </p>
+                        <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        {% empty %}
-        <div class="col-12 text-center">
-            <p>No upcoming events.</p>
-        </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        {% else %}
+            <!-- Temporary Placeholder Card -->
+            <div class="col-md-4 mb-3">
+                <div class="card border-secondary">
+                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Upcoming Event">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Your Event Could Be Here!</h5>
+                        <p class="card-text text-muted">
+                            <strong>Date:</strong> TBD <br>
+                            <strong>Location:</strong> TBD
+                        </p>
+                        <a href="{% url 'create_event' %}" class="btn btn-secondary">Host an Event</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div> <!-- ✅ Correctly closed the row div -->
 </section>
+
 {% endblock %}
