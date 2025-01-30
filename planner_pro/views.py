@@ -9,6 +9,10 @@ def home(request):
     upcoming_events = Event.objects.filter(date__gte=now()).order_by('date')[:5]  # Show next 5 events
     return render(request, 'home.html', {'upcoming_events': upcoming_events})
 
+@login_required
+def profile(request):
+    return render(request, "profile.html", {"user": request.user})
+    
 # SIGNUP - Create a new account
 def signup(request):
     if request.method == "POST":
