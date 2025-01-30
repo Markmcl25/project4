@@ -46,11 +46,11 @@
         <div class="row">
             <!-- Sidebar -->
             <aside class="col-md-3 bg-light p-3 rounded">
-                <h4>Sidebar</h4>
+                <h4>Quick Actions</h4>
                 <ul class="list-unstyled">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
+                    <li><a href="{% url 'create_event' %}" class="btn btn-primary w-100 mb-2">Host an Event</a></li>
+                    <li><a href="{% url 'event_list' %}" class="btn btn-secondary w-100 mb-2">View Events</a></li>
+                    <li><a href="{% url 'dashboard' %}" class="btn btn-secondary w-100">My Dashboard</a></li>
                 </ul>
             </aside>
 
