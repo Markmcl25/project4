@@ -8,3 +8,7 @@ def home(request):
 
 def create_event(request):
     return render(request, 'create_event.html')
+
+def event_list(request):
+    events = Event.objects.all()
+    return render(request, 'event_list.html', {'events': events})    
