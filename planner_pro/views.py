@@ -11,4 +11,7 @@ def create_event(request):
 
 def event_list(request):
     events = Event.objects.all()
-    return render(request, 'event_list.html', {'events': events})    
+    return render(request, 'event_list.html', {'events': events})   
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
