@@ -41,7 +41,15 @@ def user_login(request):
 # CREATE EVENT - Protected, Only Logged-in Users
 @login_required
 def create_event(request):
-    return render(request, 'create_event.html')
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('event_list')  # Redirect to event list after creation
+    else:
+        form = EventForm()
+
+    return render(request, 'create_event.html', {'form': form})
 
 # EVENT LIST - Show all events
 def event_list(request):
