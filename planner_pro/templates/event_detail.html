@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center">{{ event.title }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            {% if event.image %}
+                <img src="{{ event.image.url }}" class="img-fluid" alt="{{ event.title }}">
+            {% else %}
+                <img src="{% static 'images/placeholder.png' %}" class="img-fluid" alt="No Image Available">
+            {% endif %}
+        </div>
+
+        <div class="col-md-6">
+            <p><strong>Date:</strong> {{ event.date }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <p><strong>Category:</strong> {{ event.category }}</p>
+            <p><strong>Description:</strong> {{ event.description }}</p>
+
+            <a href="{% url 'event_list' %}" class="btn btn-secondary">Back to Events</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
