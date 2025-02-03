@@ -114,3 +114,8 @@ def dashboard(request):
         'pending_bookings': pending_bookings,
     }
     return render(request, 'dashboard.html', context)
+
+@login_required
+def pending_bookings(request):
+    bookings = Booking.objects.filter(status='pending')
+    return render(request, 'pending_bookings.html', {'bookings': bookings})

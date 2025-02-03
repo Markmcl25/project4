@@ -23,4 +23,7 @@ urlpatterns = [
 
     # User Dashboard (Requires Login)
     path("dashboard/", views.dashboard, name="dashboard"),
+
+    path('pending-bookings/', views.pending_bookings, name='pending_bookings'),
+
 ]
