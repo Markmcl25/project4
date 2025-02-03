@@ -103,16 +103,18 @@ def event_detail(request, event_id):
 # DASHBOARD - Protected, Only Logged-in Users
 @login_required
 def dashboard(request):
-    total_events = Event.objects.count()
-    upcoming_events = Event.objects.filter(date__gte=now()).count()
-    total_users = User.objects.count()
-    pending_bookings = Booking.objects.filter(status='pending').count()  # Adjust 'status' based on your model
+    total_events = Event.objects.count()  # This is a count (integer)
+    upcoming_events_list = Event.objects.filter(date__gte=now()).order_by('date')[:5]  # Queryset of upcoming events
+    upcoming_events_count = upcoming_events_list.count()  # Just the count
+    total_users = User.objects.count()  # Count of users
+    pending_bookings = Booking.objects.filter(status='pending')  # Queryset for pending bookings
 
     context = {
         'total_events': total_events,
-        'upcoming_events': upcoming_events,
+        'upcoming_events': upcoming_events_list,   # Now passing the queryset
+        'upcoming_events_count': upcoming_events_count,  # Count for display
         'total_users': total_users,
-        'pending_bookings': pending_bookings,
+        'pending_bookings': pending_bookings,  # Pass queryset, not just count
     }
     return render(request, 'dashboard.html', context)
 
