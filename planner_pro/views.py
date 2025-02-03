@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, Booking
+from django.contrib.auth.models import User  # Add this line
+from .models import Booking, Event
 from .forms import EventForm
 from django.utils.timezone import now
 from django.contrib.auth import login
