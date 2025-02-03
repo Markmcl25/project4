@@ -46,11 +46,13 @@ def create_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('event_list')  # Redirect to event list after creation
+            event = form.save(commit=False)
+            event.creator = request.user  # Assign the logged-in user
+            event.save()
+            return redirect('event_list')
     else:
         form = EventForm()
-
+    
     return render(request, 'create_event.html', {'form': form})
 
 # Edit Event
