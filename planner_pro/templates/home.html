@@ -7,10 +7,19 @@
     <h2>Upcoming Events</h2>
     <ul class="list-group">
         {% for event in upcoming_events %}
-            <li class="list-group-item">
-                <h5>{{ event.name }}</h5>
-                <p>{{ event.description }}</p>
-                <small>{{ event.date|date:"M d, Y H:i" }}</small>
+            <li class="list-group-item d-flex align-items-center">
+                <!-- Check if event has an image -->
+                {% if event.image and event.image.url %}
+                    <img src="{{ event.image.url }}" alt="{{ event.name }}" class="img-thumbnail me-3" style="width: 100px; height: 100px;">
+                {% else %}
+                    <img src="{% static 'images/placeholder.png' %}" alt="No Image Available" class="img-thumbnail me-3" style="width: 100px; height: 100px;">
+                {% endif %}
+
+                <div>
+                    <h5>{{ event.name }}</h5>
+                    <p>{{ event.description }}</p>
+                    <small>{{ event.date|date:"M d, Y H:i" }}</small>
+                </div>
             </li>
         {% empty %}
             <p>No upcoming events at the moment.</p>
