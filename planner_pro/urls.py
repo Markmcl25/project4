@@ -18,6 +18,8 @@ urlpatterns = [
     path("create-event/", views.create_event, name="create_event"),  # Requires login
     path("events/", views.event_list, name="event_list"),
     path("events/<int:event_id>/", views.event_detail, name="event_detail"),  # Individual Event Page
+    path('events/<int:event_id>/edit/', views.edit_event, name='edit_event'),  # Event Edit
+    path('events/<int:event_id>/delete/', views.delete_event, name='delete_event'), # Event Delete
 
     # User Dashboard (Requires Login)
     path("dashboard/", views.dashboard, name="dashboard"),

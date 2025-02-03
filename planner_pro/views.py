@@ -53,6 +53,40 @@ def create_event(request):
 
     return render(request, 'create_event.html', {'form': form})
 
+# Edit Event
+@login_required
+def edit_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.user != event.creator and not request.user.is_superuser:
+        messages.error(request, "You don't have permission to edit this event.")
+        return redirect('event_detail', event_id=event.id)
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES, instance=event)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Event updated successfully.")
+            return redirect('event_detail', event_id=event.id)
+    else:
+        form = EventForm(instance=event)
+
+    return render(request, 'edit_event.html', {'form': form, 'event': event})
+
+# Delete Event
+@login_required
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.user != event.creator and not request.user.is_superuser:
+        messages.error(request, "You don't have permission to delete this event.")
+        return redirect('event_detail', event_id=event.id)
+
+    if request.method == 'POST':
+        event.delete()
+        messages.success(request, "Event deleted successfully.")
+        return redirect('event_list')
+
+    return render(request, 'confirm_delete.html', {'event': event})
+
 # EVENT LIST - Show all events
 def event_list(request):
     events = Event.objects.all()
