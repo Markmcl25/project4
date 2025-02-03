@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event
+from .models import Event, Booking
 from .forms import EventForm
 from django.utils.timezone import now
 from django.contrib.auth import login
@@ -102,4 +102,15 @@ def event_detail(request, event_id):
 # DASHBOARD - Protected, Only Logged-in Users
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    total_events = Event.objects.count()
+    upcoming_events = Event.objects.filter(date__gte=now()).count()
+    total_users = User.objects.count()
+    pending_bookings = Booking.objects.filter(status='pending').count()  # Adjust 'status' based on your model
+
+    context = {
+        'total_events': total_events,
+        'upcoming_events': upcoming_events,
+        'total_users': total_users,
+        'pending_bookings': pending_bookings,
+    }
+    return render(request, 'dashboard.html', context)
