@@ -14,6 +14,7 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 
     # Event Management
+    path('host-event/', views.create_event, name='host-event'),
     path("create-event/", views.create_event, name="create_event"),  # Requires login
     path("events/", views.event_list, name="event_list"),
     path("events/<int:event_id>/", views.event_detail, name="event_detail"),  # Individual Event Page
