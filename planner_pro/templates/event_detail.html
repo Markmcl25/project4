@@ -21,6 +21,12 @@
             <p><strong>Description:</strong> {{ event.description }}</p>
 
             <a href="{% url 'event_list' %}" class="btn btn-secondary">Back to Events</a>
+
+            {% if user == event.creator or user.is_superuser %}
+            <a href="{% url 'edit_event' event.id %}" class="btn btn-warning">Edit Event</a>
+            <a href="{% url 'delete_event' event.id %}" class="btn btn-danger">Delete Event</a>
+            {% endif %}
+
         </div>
     </div>
 </div>
