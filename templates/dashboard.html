@@ -14,26 +14,43 @@
     </div>
 
     <!-- Quick Stats -->
-    <div class="row text-center my-4">
-        <div class="col-md-4">
-            <div class="card p-4 shadow-sm border-primary">
-                <h4><i class="bi bi-calendar-event"></i> Total Events</h4>
-                <h2 class="text-primary">{{ total_events }}</h2>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-4 shadow-sm border-success">
-                <h4><i class="bi bi-clock"></i> Upcoming Events</h4>
-                <h2 class="text-success">{{ upcoming_events_count }}</h2>  
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card p-4 shadow-sm border-warning">
-                <h4><i class="bi bi-clipboard-check"></i> Pending Bookings</h4>
-                <h2 class="text-warning">{{ pending_bookings_count }}</h2>  
-            </div>
+<div class="row text-center my-4">
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm border-primary">
+            <h4><i class="bi bi-calendar-event"></i> Total Events</h4>
+            <h2 class="text-primary">{{ total_events }}</h2>  <!-- ✅ Integer -->
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm border-success">
+            <h4><i class="bi bi-clock"></i> Upcoming Events</h4>
+            <h2 class="text-success">{{ upcoming_events_count }}</h2>  <!-- ✅ Integer -->
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm border-warning">
+            <h4><i class="bi bi-clipboard-check"></i> Pending Bookings</h4>
+            <h2 class="text-warning">{{ pending_bookings_count }}</h2>  <!-- ✅ Integer -->
+        </div>
+    </div>
+</div>
+
+<!-- Upcoming Events List -->
+<div class="row my-4">
+    <div class="col-12">
+        <h3 class="mb-3"><i class="bi bi-calendar3"></i> Upcoming Events</h3>
+        <div class="list-group">
+            {% for event in upcoming_events %}  <!-- ✅ QuerySet -->
+                <a href="{% url 'event_detail' event.id %}" class="list-group-item list-group-item-action shadow-sm">
+                    <strong>{{ event.title }}</strong> - {{ event.date }} at {{ event.location }}
+                </a>
+            {% empty %}
+                <p class="text-muted">No upcoming events.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 
     <!-- Upcoming Events Section -->
     <div class="row my-4">

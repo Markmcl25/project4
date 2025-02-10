@@ -102,39 +102,22 @@ def event_detail(request, event_id):
 
 # DASHBOARD - Protected, Only Logged-in Users
 @login_required
-
 def dashboard(request):
-
-    total_events = Event.objects.count()  
-
-    upcoming_events_list = Event.objects.filter(date__gte=now()).order_by('date')[:5]  # QuerySet
-
-    upcoming_events_count = upcoming_events_list.count()  # Count of upcoming events
-
-    total_users = User.objects.count()  
-
-    pending_bookings_list = Booking.objects.filter(status='pending')  # QuerySet
-
-    pending_bookings_count = pending_bookings_list.count()  # Count of pending bookings
-
-
+    total_events = Event.objects.count()  # Integer ✅
+    upcoming_events_list = Event.objects.filter(date__gte=now()).order_by('date')[:5]  # QuerySet ✅
+    upcoming_events_count = upcoming_events_list.count()  # Integer ✅
+    total_users = User.objects.count()  # Integer ✅
+    pending_bookings_list = Booking.objects.filter(status='pending')  # QuerySet ✅
+    pending_bookings_count = pending_bookings_list.count()  # Integer ✅
 
     context = {
-
-        'total_events': total_events,
-
-        'upcoming_events': upcoming_events_list,   # ✅ QuerySet
-
-        'upcoming_events_count': upcoming_events_count,  # ✅ Integer for card
-
-        'total_users': total_users,
-
-        'pending_bookings': pending_bookings_list,  # ✅ QuerySet
-
-        'pending_bookings_count': pending_bookings_count,  # ✅ Integer for card
-
+        'total_events': total_events,  # Integer ✅
+        'upcoming_events': upcoming_events_list,   # QuerySet ✅
+        'upcoming_events_count': upcoming_events_count,  # Integer ✅
+        'total_users': total_users,  # Integer ✅
+        'pending_bookings': pending_bookings_list,  # QuerySet ✅
+        'pending_bookings_count': pending_bookings_count,  # Integer ✅
     }
-
     return render(request, 'dashboard.html', context)
 
 @login_required
