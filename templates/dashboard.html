@@ -51,23 +51,6 @@
     </div>
 </div>
 
-
-    <!-- Upcoming Events Section -->
-    <div class="row my-4">
-        <div class="col-12">
-            <h3 class="mb-3"><i class="bi bi-calendar3"></i> Upcoming Events</h3>
-            <div class="list-group">
-                {% for event in upcoming_events %}
-                    <a href="{% url 'event_detail' event.id %}" class="list-group-item list-group-item-action shadow-sm">
-                        <strong>{{ event.title }}</strong> - {{ event.date }} at {{ event.location }}
-                    </a>
-                {% empty %}
-                    <p class="text-muted">No upcoming events.</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
     <!-- Quick Actions -->
     <div class="row my-4 text-center">
         <div class="col-md-6">
