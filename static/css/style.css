@@ -27,17 +27,33 @@ footer {
     background-color: #222 !important;
 }
 
+/* Fix Navbar Brand Visibility in Dark Mode */
+.navbar-brand {
+    color: white !important; /* Default white */
+}
+
+.dark-mode .navbar-brand {
+    color: #f8f9fa !important; /* Light gray for better visibility */
+}
+
+/* Optional: Change navbar brand color on hover */
+.dark-mode .navbar-brand:hover {
+    color: #ffc107 !important; /* Yellow on hover */
+}
+
+/* Dark mode for cards */
 .dark-mode .card {
     background-color: #333;
     color: #fff;
 }
 
+/* Dark mode for buttons */
 .dark-mode .btn {
     background-color: #444;
     color: white;
 }
 
-/* Ensure navbar brand is visible in dark mode */
-.dark-mode .navbar-brand {
-    color: #f8f9fa !important;  /* Light color for visibility */
+/* Ensure other text inside buttons remains readable */
+.dark-mode .btn:hover {
+    background-color: #555;
 }
