@@ -16,3 +16,23 @@ header,
 footer {
     width: 100%;
 }
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #222 !important;
+}
+
+.dark-mode .card {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode .btn {
+    background-color: #444;
+    color: white;
+}
