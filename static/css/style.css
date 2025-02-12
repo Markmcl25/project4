@@ -36,3 +36,8 @@ footer {
     background-color: #444;
     color: white;
 }
+
+/* Ensure navbar brand is visible in dark mode */
+.dark-mode .navbar-brand {
+    color: #f8f9fa !important;  /* Light color for visibility */
+}
