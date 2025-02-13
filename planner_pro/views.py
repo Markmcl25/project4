@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Booking, Event
 from .forms import EventForm
 from django.utils.timezone import now
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
@@ -125,3 +125,7 @@ def dashboard(request):
 def pending_bookings(request):
     bookings = Booking.objects.filter(status='pending')
     return render(request, 'pending_bookings.html', {'bookings': bookings})
+
+def custom_logout(request):
+    logout(request)
+    return redirect("home")   

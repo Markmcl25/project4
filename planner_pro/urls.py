@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
-from .views import signup
+from .views import signup, custom_logout
 
 urlpatterns = [
     # Homepage (Upcoming Events)
@@ -11,7 +11,7 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("signup/", views.signup, name="signup"),
     path("login/", auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path("logout/", custom_logout, name="logout"),
 
     # Event Management
     path('host-event/', views.create_event, name='host-event'),
