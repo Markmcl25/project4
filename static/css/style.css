@@ -33,7 +33,7 @@ footer {
 }
 
 .dark-mode .navbar-brand {
-    color: #f8f9fa !important; /* Light gray for better visibility */
+    color: black !important; /* Light gray for better visibility */
 }
 
 /* Optional: Change navbar brand color on hover */

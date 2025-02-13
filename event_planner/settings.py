@@ -42,6 +42,7 @@ ALLOWED_HOSTS = [
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://8000-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io",
     'https://event-planner01-349f46b9deb8.herokuapp.com'
 ]
 
@@ -148,6 +149,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'dashboard'  # Redirect to the dashboard after login
 LOGOUT_REDIRECT_URL = 'home'  # Redirect to the home page after logout

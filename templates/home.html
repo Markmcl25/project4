@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
 
 <!-- Hero Section -->
@@ -49,10 +51,10 @@
             {% for event in upcoming_events %}
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    {% if event.image and event.image.url %}
+                    {% if event.image %}
                         <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
                     {% else %}
-                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="No Image Available">
+                        <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="No Image Available">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ event.title }}</h5>
@@ -66,10 +68,10 @@
             </div>
             {% endfor %}
         {% else %}
-            <!-- Temporary Placeholder Card -->
+            <!-- Placeholder for no events -->
             <div class="col-md-4 mb-3">
                 <div class="card border-secondary">
-                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Upcoming Event">
+                    <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="Upcoming Event">
                     <div class="card-body">
                         <h5 class="card-title text-muted">Your Event Could Be Here!</h5>
                         <p class="card-text text-muted">
@@ -81,7 +83,8 @@
                 </div>
             </div>
         {% endif %}
-    </div> 
+    </div>
+    
 </section>
 
 {% endblock %}
