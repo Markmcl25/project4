@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://*.gitpod.io",
     "https://8000-markmcl25-project4-izzx61q5mhz.ws-eu117.gitpod.io",
     'https://event-planner01-349f46b9deb8.herokuapp.com'
 ]
