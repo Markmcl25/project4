@@ -2,11 +2,22 @@
 {% load static %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center login-page">
-    <div class="row w-75 shadow-lg p-4 rounded bg-white">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-100 shadow-lg p-4 rounded bg-white" style="max-width: 900px;">
         
+        <!-- Image Card (Visible on Medium+ Screens) -->
+        <div class="col-lg-6 d-none d-lg-block">
+            <div class="card p-3 border-0">
+                <img src="{% static 'images/login_image.jpg' %}" class="img-fluid rounded" alt="Login Background">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Plan Your Next Event</h5>
+                    <p class="text-muted">Discover and organize amazing events effortlessly.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Login Card -->
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
             <div class="card p-4 w-100">
                 <h2 class="text-center mb-3">Welcome Back!</h2>
                 <p class="text-center text-muted">Log in to manage your events and bookings.</p>
@@ -35,16 +46,6 @@
             </div>
         </div>
 
-        <!-- Image Card (Updated) -->
-        <div class="col-md-6 d-none d-md-block">
-            <div class="card p-3 border-0">
-                <img src="{% static 'images/login_image.jpg' %}" class="img-fluid rounded" alt="Login Background">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Plan Your Next Event</h5>
-                    <p class="text-muted">Discover and organize amazing events effortlessly.</p>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock %}
