@@ -89,24 +89,23 @@ User (1) -------- (M) Event
   - User authentication flows.
   - Role-based access checks.
 
-### Example Test:
-```bash
-python manage.py test
-```
-
 ## Bugs and Fixes
 - **Issue:** Event deletion not reflecting immediately.
   - **Fix:** Added AJAX refresh.
 - **Issue:** Image upload errors on Heroku.
   - **Fix:** Configured Cloudinary settings.
 
+## Checks on Validators  
+Base.html check
+![Base](static/images/readme/base.checker.jpg)
+Dashboard.html
+![Dash](static/images/readme/dash.sc.jpg)
+Event list
+![Event](static/images/readme/event-sc.jpg)
+
 ## Future Enhancements
 - Event RSVP functionality
 - User profile pages
 - Integration with calendar APIs
 
-## Acknowledgements
-- Code Institute Full-Stack Software Development Program
-- Bootstrap documentation
-- Django documentation
 
