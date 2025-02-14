@@ -1,5 +1,10 @@
 # Event Planner
 
+![Display 1](static/images/readme/display1.jpg)
+![Display 2](static/images/readme/display2.jpg)
+![Display 3](static/images/readme/display3.jpg)
+![Display 3](static/images/readme/darkmode.jpg)
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
@@ -10,7 +15,6 @@
 - [Testing](#testing)
 - [Bugs and Fixes](#bugs-and-fixes)
 - [Future Enhancements](#future-enhancements)
-- [Acknowledgements](#acknowledgements)
 
 ## Project Overview
 The **Event Planner** is a full-stack web application designed to help users create, manage, and discover events. It supports role-based access control, allowing event creators to manage their events, while general users can browse and register for events.
@@ -29,6 +33,8 @@ The **Event Planner** is a full-stack web application designed to help users cre
 - **As a user**, I want to create an event so that I can invite people.
 - **As an admin**, I want to manage all events to ensure proper moderation.
 - **As an event creator**, I want to edit or delete my events.
+
+![User stories](static/images/readme/userstories.jpg)
 
 ### User Acceptance Criteria
 - Users can create, update, and delete their events.
@@ -53,9 +59,7 @@ The **Event Planner** is a full-stack web application designed to help users cre
 - `creator` (ForeignKey to User)
 
 ### ERD Diagram
-```
-User (1) -------- (M) Event
-```
+![Flow chart](static/images/readme/flow_chart.jpg)
 
 ## Deployment
 1. Clone the repository:
@@ -81,6 +85,8 @@ User (1) -------- (M) Event
    git push heroku main
    heroku run python manage.py migrate
    ```
+
+![Heroku](static/images/readme/heroku.jpg)   
 
 ## Testing
 - **Unit Tests:** Cover models, views, and forms.
