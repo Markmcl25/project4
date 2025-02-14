@@ -95,6 +95,8 @@ The **Event Planner** is a full-stack web application designed to help users cre
   - User authentication flows.
   - Role-based access checks.
 
+![Tests](static/images/readme/tests.jpg) 
+
 ## Bugs and Fixes
 - **Issue:** Event deletion not reflecting immediately.
   - **Fix:** Added AJAX refresh.
